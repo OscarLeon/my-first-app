@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { todos } from './todos.json';
 import TodoForm from './components/TodoForm';
+import logo from './logo.svg';
+import DetailTodo from './components/DetailTodo';
 
 class App extends Component {
   constructor() {
@@ -15,18 +17,7 @@ class App extends Component {
     const tasks = todos.map((todo, i) => {
       return (
         <div className="col-md-4">
-          <div className="card mt-4">
-            <div className="card-header">
-              <h3>{todo.title}</h3>
-              <span className="badge badge-pill badge-danger">
-                {todo.priority}
-              </span>
-            </div>
-            <div className="card-body">
-              <p>{todo.description}</p>
-              <p><mark>{todo.responsible}</mark></p>
-            </div>
-          </div>
+          <DetailTodo todoInput={todo} />
         </div>
       )
     });
@@ -41,12 +32,20 @@ class App extends Component {
             </span>
           </a>
         </nav>
+
         <div className="container">
-          <div className="row">
-            {tasks}
+          <div className="row mt-4">
+            <div className="col-md-3">
+              <img src={logo} className="App-logo" alt="Logo" />
+              <TodoForm />
+            </div>
+            <div className="col-md-9">
+              <div class="row">
+                {tasks}
+              </div>
+            </div>
           </div>
         </div>
-        <TodoForm />
       </div>
     );
   }

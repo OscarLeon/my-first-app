@@ -9,6 +9,7 @@ class TodoForm extends Component {
             priority: 'low'
         };
         this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     async handleInput(e) {
@@ -19,13 +20,18 @@ class TodoForm extends Component {
         await this.setState({
             [name]: value
         });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
         console.log(this.state);
+        alert('sending');
     }
 
     render() {
         return (
             <div className="card">
-                <form className="card-body">
+                <form className="card-body" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <input type="text" name="title"
                             className="form-control" placeholder="Title"
@@ -48,7 +54,12 @@ class TodoForm extends Component {
                             <option>low</option>
                             <option>medium</option>
                             <option>high</option>
-                        </select>/>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-primary">
+                            Save
+                        </button>
                     </div>
                 </form>
             </div>
